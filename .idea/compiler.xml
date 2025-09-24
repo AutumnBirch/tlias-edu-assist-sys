@@ -9,7 +9,6 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$PROJECT_DIR$/../../../../17_Codesoft/apache-maven-3.9.4/mvn_repo/org/projectlombok/lombok/1.18.40/lombok-1.18.40.jar" />
-          <entry name="$PROJECT_DIR$/../../../../17_Codesoft/apache-maven-3.9.4/mvn_repo/org/projectlombok/lombok/1.18.40/lombok-1.18.40.jar" />
         </processorPath>
         <module name="tlias-web-management" />
       </profile>

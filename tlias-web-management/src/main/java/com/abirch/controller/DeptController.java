@@ -4,7 +4,10 @@ import com.abirch.pojo.Dept;
 import com.abirch.pojo.Result;
 import com.abirch.service.DeptService;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Delete;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,9 +16,12 @@ import java.util.List;
 /**
  * 部门表controller类
  */
-@RequestMapping
+@Slf4j
+@RequestMapping("/depts")
 @RestController // 标识当前类是一个请求处理类，可以将方法的返回值作为响应数据直接响应给前端，这玩意会自动将响应回前端的对象或者集合转为JSON再响应回去
 public class DeptController {
+
+//    public static final Logger log = LoggerFactory.getLogger(DeptController.class); // 固定代码
 
     @Autowired // 应用程序运行时，会自动查找对应类型的bean对象并赋值给该成员变量
     private DeptService deptService;
@@ -26,9 +32,10 @@ public class DeptController {
      * 返回值：Result 后端统一返回的结果
      */
     // @RequestMapping(value = "/depts",method = RequestMethod.GET) // 标识请求路径和请求方式
-    @GetMapping("/depts")
+    @GetMapping
     public Result list(){
-        System.out.println("查询全部的部门数据");
+        // System.out.println("查询全部的部门数据");
+        log.info("查询全部的部门数据");
         // 把查询到的数据封装到list集合中便于统一返回给前端
         List<Dept> deptList = deptService.findAll();
         // 代码能走到这一步就已经说明成功了，所以直接返回成功的结果
@@ -62,9 +69,10 @@ public class DeptController {
         return Result.success();
     }*/
     // 方式三:如果请求参数名与形参变量名相同，直接定义方法形参即可接收。（省略@RequestParam）
-    @DeleteMapping("/depts")
+    @DeleteMapping
     public Result delete(Integer id){
-        System.out.println("获取的删除ID为："+ id);
+        // System.out.println("获取的删除ID为："+ id);
+        log.info("获取的删除ID为："+ id);
         deptService.deleteById(id);
         // 走到这一步就代表前端发来的数据已经获取成功了，由于删除部门并不需要给前端额外返回数据，所以调用无参的success方法
         return Result.success();
@@ -76,7 +84,7 @@ public class DeptController {
      * 这里响应过来的数据是"name": "教研部"这种形式的，刚好就能封装给实体类当中的name属性
      * 返回值：
      */
-    @PostMapping("/depts")
+    @PostMapping
     public Result add(@RequestBody Dept dept){
         System.out.println("新增部门为："+dept.getName());
         // 这个新增操作不需要返回值
@@ -87,9 +95,10 @@ public class DeptController {
      * 获取要修改部门的信息
      * 如果路径参数名与controller方法形参名称一致，@PathVariable注解的value属性是可以省略的。此处省略前：@PathVariable("id") Integer deptId
      */
-    @GetMapping("/depts/{id}")
+    @GetMapping("/{id}")
     public Result getInfo(@PathVariable Integer id){
-        System.out.println("根据id查询的部门为："+id);
+//        System.out.println("根据id查询的部门为："+id);
+        log.info("根据id查询的部门为：{}",id);
         // 根据id查询的数据是啥？这个要查询的数据就是返回值，所以这里是有返回值的
         Dept dept = deptService.getById(id);
         return Result.success(dept);
@@ -97,9 +106,10 @@ public class DeptController {
     /**
      * 修改部门
      */
-    @PutMapping("/depts")
+    @PutMapping
     public Result update(@RequestBody Dept dept){
-        System.out.println("修改部门："+dept);
+//        System.out.println("修改部门："+dept);
+        log.info("修改部门：{}",dept);
         deptService.update(dept);
         return Result.success();
     }
