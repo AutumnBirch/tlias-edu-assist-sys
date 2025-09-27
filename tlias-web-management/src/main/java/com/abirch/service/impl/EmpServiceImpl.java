@@ -1,7 +1,9 @@
 package com.abirch.service.impl;
 
+import com.abirch.mapper.EmpExprMapper;
 import com.abirch.mapper.EmpMapper;
 import com.abirch.pojo.Emp;
+import com.abirch.pojo.EmpExpr;
 import com.abirch.pojo.EmpQueryParam;
 import com.abirch.pojo.PageResult;
 import com.abirch.service.EmpService;
@@ -9,6 +11,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -18,6 +21,8 @@ import java.util.List;
 public class EmpServiceImpl implements EmpService {
     @Autowired
     private EmpMapper empMapper;
+    @Autowired
+    private EmpExprMapper empExprMapper;
 
     // ==================================原始分页查询的实现方式====================================
 /*    @Override
@@ -36,8 +41,6 @@ public class EmpServiceImpl implements EmpService {
 
     /**
      * 基于pageHelper来进行分页查询
-     * @param page 页码
-     * @param pageSize 每页记录数
      * @return
      */
 /*    public PageResult<Emp> page(Integer page, Integer pageSize, String name, Integer gender, LocalDate begin, LocalDate end) {
@@ -57,5 +60,22 @@ public class EmpServiceImpl implements EmpService {
         // 3. 解析查询结果，并封装数据
         Page<Emp> p = (Page<Emp>) empList;
         return new PageResult<Emp>(p.getTotal(),p.getResult());
+    }
+
+    @Override
+    public void save(Emp emp) {
+        // 1. 保存员工基本信息
+        emp.setCreateTime(LocalDateTime.now());
+        emp.setUpdateTime(LocalDateTime.now());
+        empMapper.insert(emp);
+        // 2. 保存员工工作经历信息
+        List<EmpExpr> exprList = emp.getExprList();
+        if (!CollectionUtils.isEmpty(exprList)){
+            // 遍历集合，为empId赋值
+            exprList.forEach(empExpr -> {
+                empExpr.setEmpId(emp.getId());
+            });
+            empExprMapper.insertBatch(exprList);
+        }
     }
 }

@@ -2,7 +2,9 @@ package com.abirch.mapper;
 
 import com.abirch.pojo.Emp;
 import com.abirch.pojo.EmpQueryParam;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 
 import java.time.LocalDate;
@@ -39,5 +41,15 @@ public interface EmpMapper {
      * @param empQueryParam
      * @return
      */
+    // SQL语句在XML文件里配置好了，所以这里没有
     public List<Emp> list(EmpQueryParam empQueryParam);
+
+    /**
+     * 新增员工基本信息
+     * @param emp
+     */
+    @Options(useGeneratedKeys = true, keyProperty = "id") // 获取生成的主键--主键返回
+    @Insert("insert into emp(username, name, gender, phone, job, salary, image, entry_date, dept_id, create_time, update_time)" +
+            "    values (#{username},#{name},#{gender},#{phone},#{job},#{salary},#{image},#{entryDate},#{deptId},#{createTime},#{updateTime})")
+    void insert(Emp emp);
 }

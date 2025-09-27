@@ -13,4 +13,10 @@ public interface EmpService {
      */
 //    PageResult<Emp> page(Integer page, Integer pageSize, String name, Integer gender, LocalDate begin, LocalDate end);
     PageResult<Emp> page(EmpQueryParam empQueryParam);
+
+    /**
+     * 新增员工
+     * @param emp
+     */
+    void save(Emp emp);
 }
