@@ -6,6 +6,7 @@ import com.abirch.pojo.PageResult;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public interface EmpService {
     /**
@@ -19,4 +20,23 @@ public interface EmpService {
      * @param emp
      */
     void save(Emp emp);
+
+    /**
+     * 批量删除员工信息
+     * @param ids
+     */
+    void delete(List<Integer> ids);
+
+    /**
+     * 根据id查询员工信息
+     * @param id
+     * @return
+     */
+    Emp getInfo(Integer id);
+
+    /**
+     * 修改员工
+     * @param emp
+     */
+    void update(Emp emp);
 }
