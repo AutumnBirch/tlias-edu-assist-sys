@@ -14,8 +14,6 @@ import java.util.List;
 public interface ClazzMapper {
     /**
      * 条件查询班级信息的方法
-     * @param clazzQueryParam
-     * @return
      */
     List<Clazz> list(ClazzQueryParam clazzQueryParam);
 
@@ -25,6 +23,7 @@ public interface ClazzMapper {
     @Insert("insert into clazz(name,room,begin_date,end_date,master_id,subject) values (#{name},#{room},#{beginDate},#{endDate},#{masterId},#{subject})")
     void insert(Clazz clazz);
 
-
     Clazz getById(Integer id);
+
+    void updateById(Clazz clazz);
 }

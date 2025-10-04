@@ -28,4 +28,8 @@ public interface ClazzService {
      */
     Clazz getInfo(Integer id);
 
+    /**
+     * 修改班级信息
+     */
+    void update(Clazz clazz);
 }

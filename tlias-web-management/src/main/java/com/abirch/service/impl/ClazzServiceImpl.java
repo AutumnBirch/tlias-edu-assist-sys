@@ -11,6 +11,7 @@ import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service // 声明为springIOC容器的Bean
@@ -36,13 +37,19 @@ public class ClazzServiceImpl implements ClazzService {
 
     @Override
     public void add(Clazz clazz) {
+        clazz.setCreateTime(LocalDateTime.now());
+        clazz.setUpdateTime(LocalDateTime.now());
         clazzMapper.insert(clazz);
     }
 
     @Override
     public Clazz getInfo(Integer id) {
         return clazzMapper.getById(id);
-
     }
 
+    @Override
+    public void update(Clazz clazz) {
+        clazz.setUpdateTime(LocalDateTime.now());
+        clazzMapper.updateById(clazz);
+    }
 }

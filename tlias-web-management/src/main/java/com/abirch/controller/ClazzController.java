@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 /**
  * 班级管理Controller
@@ -39,7 +38,6 @@ public class ClazzController {
         return Result.success(clazz);
     }
 
-
     /**
      * 删除班级
      */
@@ -60,4 +58,13 @@ public class ClazzController {
         return Result.success();
     }
 
+    /**
+     * 修改班级
+     */
+    @PutMapping
+    public Result update(@RequestBody Clazz clazz){
+        log.info("修改班级：{}",clazz);
+        clazzService.update(clazz);
+        return Result.success();
+    }
 }
