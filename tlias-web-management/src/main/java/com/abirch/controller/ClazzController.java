@@ -1,15 +1,12 @@
 package com.abirch.controller;
 
-import com.abirch.pojo.Clazz;
-import com.abirch.pojo.ClazzQueryParam;
-import com.abirch.pojo.PageResult;
-import com.abirch.pojo.Result;
+import com.abirch.pojo.*;
 import com.abirch.service.ClazzService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 班级管理Controller
@@ -32,6 +29,25 @@ public class ClazzController {
         return Result.success(pageResult);
     }
 
+    /**
+     * 查询所有员工
+     */
+//    @GetMapping("/list")
+//    public Result list(){
+//        log.info("查询全部员工名称：");
+//        List<Emp> empList = clazzService.findAll();
+//        return Result.success(empList);
+//    }
 
+
+    /**
+     * 删除班级
+     */
+    @DeleteMapping("/{id}")
+    public Result delete(@PathVariable Integer id){
+        log.info("根据ID删除班级信息：{}",id);
+        clazzService.delete(id);
+        return Result.success();
+    }
 
 }

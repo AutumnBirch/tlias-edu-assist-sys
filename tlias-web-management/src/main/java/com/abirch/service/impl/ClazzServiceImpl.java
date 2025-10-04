@@ -3,6 +3,7 @@ package com.abirch.service.impl;
 import com.abirch.mapper.ClazzMapper;
 import com.abirch.pojo.Clazz;
 import com.abirch.pojo.ClazzQueryParam;
+import com.abirch.pojo.Emp;
 import com.abirch.pojo.PageResult;
 import com.abirch.service.ClazzService;
 import com.github.pagehelper.Page;
@@ -27,4 +28,14 @@ public class ClazzServiceImpl implements ClazzService {
         Page<Clazz> c = (Page<Clazz>) clazzList;
         return new PageResult<Clazz>(c.getTotal(),c.getResult());
     }
+
+    @Override
+    public void delete(Integer id) {
+        clazzMapper.delete(id);
+    }
+
+//    @Override
+//    public List<Emp> findAll() {
+//        return clazzMapper.getEmpList();
+//    }
 }
