@@ -4,6 +4,7 @@ import com.abirch.pojo.Clazz;
 import com.abirch.pojo.ClazzQueryParam;
 import com.abirch.pojo.Emp;
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -21,10 +22,9 @@ public interface ClazzMapper {
     @Delete("delete from clazz where id=#{id}")
     void delete(Integer id);
 
-//    /**
-//     * 查询所有员工信息
-//     * @return
-//     */
-//    @Select("select name from emp")
-//    List<Emp> getEmpList();
+    @Insert("insert into clazz(name,room,begin_date,end_date,master_id,subject) values (#{name},#{room},#{beginDate},#{endDate},#{masterId},#{subject})")
+    void insert(Clazz clazz);
+
+
+    Clazz getById(Integer id);
 }

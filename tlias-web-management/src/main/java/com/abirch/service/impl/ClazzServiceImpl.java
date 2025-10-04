@@ -34,8 +34,15 @@ public class ClazzServiceImpl implements ClazzService {
         clazzMapper.delete(id);
     }
 
-//    @Override
-//    public List<Emp> findAll() {
-//        return clazzMapper.getEmpList();
-//    }
+    @Override
+    public void add(Clazz clazz) {
+        clazzMapper.insert(clazz);
+    }
+
+    @Override
+    public Clazz getInfo(Integer id) {
+        return clazzMapper.getById(id);
+
+    }
+
 }

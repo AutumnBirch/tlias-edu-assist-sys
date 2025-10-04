@@ -2,6 +2,7 @@ package com.abirch.service;
 
 import com.abirch.pojo.Emp;
 import com.abirch.pojo.EmpQueryParam;
+import com.abirch.pojo.LoginInfo;
 import com.abirch.pojo.PageResult;
 
 import java.time.LocalDate;
@@ -17,26 +18,25 @@ public interface EmpService {
 
     /**
      * 新增员工
-     * @param emp
      */
     void save(Emp emp);
 
     /**
      * 批量删除员工信息
-     * @param ids
      */
     void delete(List<Integer> ids);
 
     /**
      * 根据id查询员工信息
-     * @param id
-     * @return
      */
     Emp getInfo(Integer id);
 
     /**
      * 修改员工
-     * @param emp
      */
     void update(Emp emp);
+
+    LoginInfo login(Emp emp);
+
+    List<Emp> findAll();
 }

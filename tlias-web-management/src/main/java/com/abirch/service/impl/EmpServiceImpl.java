@@ -7,6 +7,7 @@ import com.abirch.service.EmpLogService;
 import com.abirch.service.EmpService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +18,7 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
+@Slf4j
 @Service //声明为springIOC容器的Bean
 public class EmpServiceImpl implements EmpService {
     @Autowired
@@ -120,5 +122,25 @@ public class EmpServiceImpl implements EmpService {
             exprList.forEach(empExpr -> empExpr.setEmpId(emp.getId()));
         }
         empExprMapper.insertBatch(exprList);
+    }
+
+    @Override
+    public LoginInfo login(Emp emp) {
+        // 1. 调用mapper接口，根据用户名和密码查询员工信息
+        // mapper中的方法名可以不和业务层的方法名一样，不过还是得尽量做到见名知意
+        Emp e = empMapper.selectByUsernameAndPassword(emp);
+        // 2. 判断是否存在员工，存在：组装登录成功信息
+        if (e != null) {
+            log.info("登录成功，员工信息为：{}",e);
+            return new LoginInfo(e.getId(),e.getUsername(),e.getName(),"");
+        }
+        // 3. 不存在，返回null
+        return null;
+    }
+
+    @Override
+    public List<Emp> findAll() {
+        List<Emp> empList = empMapper.getAllEmpInfo();
+        return empList;
     }
 }

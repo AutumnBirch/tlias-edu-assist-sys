@@ -10,21 +10,22 @@ import java.util.List;
 public interface ClazzService {
     /**
      * 分页查询的方法
-     * @param clazzQueryParam
-     * @return
      */
     PageResult<Clazz> page(ClazzQueryParam clazzQueryParam);
 
     /**
      * 根据ID删除班级信息
-     * @param id
      */
     void delete(Integer id);
 
     /**
-     * 查询所有员工
-     * @return
+     * 添加班级
      */
-//    List<Emp> findAll();
+    void add(Clazz clazz);
+
+    /**
+     * 根据ID查询班级信息
+     */
+    Clazz getInfo(Integer id);
 
 }

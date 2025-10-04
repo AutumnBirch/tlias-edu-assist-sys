@@ -2,10 +2,7 @@ package com.abirch.mapper;
 
 import com.abirch.pojo.Emp;
 import com.abirch.pojo.EmpQueryParam;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.MapKey;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 import java.util.Map;
@@ -56,14 +53,11 @@ public interface EmpMapper {
 
     /**
      * 根据id查询员工信息和员工工作经历
-     * @param id
-     * @return
      */
     Emp getById(Integer id);
 
     /**
      * 根据ID更新员工的基本信息
-     * @param emp
      */
     void updateById(Emp emp);
     /**
@@ -74,9 +68,15 @@ public interface EmpMapper {
 
     /**
      * 统计员工性别人数
-     * @return
      */
     @MapKey("name")
     List<Map<String, Object>> countEmpGenderData();
 
+    /**
+     * 根据用户名和密码查询员工信息
+     */
+    @Select("select id,username,name from emp where username = #{username} and password = #{password}")
+    Emp selectByUsernameAndPassword(Emp emp);
+    @Select("select * from emp")
+    List<Emp> getAllEmpInfo();
 }

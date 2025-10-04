@@ -30,14 +30,14 @@ public class ClazzController {
     }
 
     /**
-     * 查询所有员工
+     * 根据ID查询
      */
-//    @GetMapping("/list")
-//    public Result list(){
-//        log.info("查询全部员工名称：");
-//        List<Emp> empList = clazzService.findAll();
-//        return Result.success(empList);
-//    }
+    @GetMapping("/{id}")
+    public Result getInfo(@PathVariable Integer id){
+        log.info("根据ID查询班级：{}",id);
+        Clazz clazz = clazzService.getInfo(id);
+        return Result.success(clazz);
+    }
 
 
     /**
@@ -47,6 +47,16 @@ public class ClazzController {
     public Result delete(@PathVariable Integer id){
         log.info("根据ID删除班级信息：{}",id);
         clazzService.delete(id);
+        return Result.success();
+    }
+
+    /**
+     * 添加班级
+     */
+    @PostMapping
+    public Result add(@RequestBody Clazz clazz){
+        log.info("添加班级信息：{}",clazz);
+        clazzService.add(clazz);
         return Result.success();
     }
 

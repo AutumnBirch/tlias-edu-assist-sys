@@ -71,8 +71,6 @@ public class EmpController {
 
     /**
      * 根据Id查询员工信息
-     * @param id
-     * @return
      */
     @GetMapping("/{id}")
     public Result getInfo(@PathVariable Integer id){
@@ -84,10 +82,19 @@ public class EmpController {
     @PutMapping
     public Result update(@RequestBody Emp emp){
         log.info("修改员工：{}",emp);
-
         empService.update(emp);
-
         return Result.success();
     }
+
+    /**
+     * 查询所有员工
+     */
+    @GetMapping("/list")
+    public Result getAllEmp(){
+        log.info("查询所有员工：");
+        List<Emp> empList = empService.findAll();
+        return Result.success(empList);
+    }
+
 
 }
