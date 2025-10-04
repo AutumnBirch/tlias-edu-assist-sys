@@ -30,6 +30,7 @@ public class LoginController {
         LoginInfo info = empService.login(emp);
         if (info!=null) {
             return Result.success(info);
+
         }else {
             return Result.error("用户名或密码错误");
         }
