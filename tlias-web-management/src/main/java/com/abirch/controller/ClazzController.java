@@ -1,5 +1,6 @@
 package com.abirch.controller;
 
+import com.abirch.anno.Log;
 import com.abirch.pojo.*;
 import com.abirch.service.ClazzService;
 import lombok.extern.slf4j.Slf4j;
@@ -41,6 +42,7 @@ public class ClazzController {
     /**
      * 删除班级
      */
+    @Log
     @DeleteMapping("/{id}")
     public Result delete(@PathVariable Integer id){
         log.info("根据ID删除班级信息：{}",id);
@@ -51,6 +53,7 @@ public class ClazzController {
     /**
      * 添加班级
      */
+    @Log
     @PostMapping
     public Result add(@RequestBody Clazz clazz){
         log.info("添加班级信息：{}",clazz);
@@ -61,6 +64,7 @@ public class ClazzController {
     /**
      * 修改班级
      */
+    @Log
     @PutMapping
     public Result update(@RequestBody Clazz clazz){
         log.info("修改班级：{}",clazz);

@@ -1,5 +1,6 @@
 package com.abirch.controller;
 
+import com.abirch.anno.Log;
 import com.abirch.pojo.Emp;
 import com.abirch.pojo.EmpQueryParam;
 import com.abirch.pojo.PageResult;
@@ -43,6 +44,7 @@ public class EmpController {
         return Result.success(pageResult);
     }
 
+    @Log
     @PostMapping
     public Result save(@RequestBody Emp emp){
         log.info("新增员工信息：{}",emp);
@@ -62,6 +64,7 @@ public class EmpController {
     /**
      * 删除员工-集合
      */
+    @Log
     @DeleteMapping
     public Result delete(@RequestParam List<Integer> ids){
         log.info("删除员工：{}", ids);
@@ -79,6 +82,7 @@ public class EmpController {
         return Result.success(emp);
     }
 
+    @Log
     @PutMapping
     public Result update(@RequestBody Emp emp){
         log.info("修改员工：{}",emp);
@@ -95,6 +99,4 @@ public class EmpController {
         List<Emp> empList = empService.findAll();
         return Result.success(empList);
     }
-
-
 }

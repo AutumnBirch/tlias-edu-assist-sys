@@ -1,5 +1,6 @@
 package com.abirch.controller;
 
+import com.abirch.anno.Log;
 import com.abirch.pojo.Dept;
 import com.abirch.pojo.Result;
 import com.abirch.service.DeptService;
@@ -69,6 +70,7 @@ public class DeptController {
         return Result.success();
     }*/
     // 方式三:如果请求参数名与形参变量名相同，直接定义方法形参即可接收。（省略@RequestParam）
+    @Log
     @DeleteMapping
     public Result delete(Integer id){
         // System.out.println("获取的删除ID为："+ id);
@@ -84,6 +86,7 @@ public class DeptController {
      * 这里响应过来的数据是"name": "教研部"这种形式的，刚好就能封装给实体类当中的name属性
      * 返回值：
      */
+    @Log
     @PostMapping
     public Result add(@RequestBody Dept dept){
         System.out.println("新增部门为："+dept.getName());
@@ -106,6 +109,7 @@ public class DeptController {
     /**
      * 修改部门
      */
+    @Log
     @PutMapping
     public Result update(@RequestBody Dept dept){
 //        System.out.println("修改部门："+dept);
