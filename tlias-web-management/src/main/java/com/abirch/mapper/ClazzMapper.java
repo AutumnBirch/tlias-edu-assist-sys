@@ -26,4 +26,6 @@ public interface ClazzMapper {
     Clazz getById(Integer id);
 
     void updateById(Clazz clazz);
+    @Select("select * from clazz")
+    List<Clazz> getAllClazzInfo();
 }

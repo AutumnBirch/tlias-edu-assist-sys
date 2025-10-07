@@ -32,4 +32,9 @@ public interface ClazzService {
      * 修改班级信息
      */
     void update(Clazz clazz);
+
+    /**
+     * 查询所有班级
+     */
+    List<Clazz> findAll();
 }

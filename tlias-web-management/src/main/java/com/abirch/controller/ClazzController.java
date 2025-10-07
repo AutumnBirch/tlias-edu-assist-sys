@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 /**
  * 班级管理Controller
@@ -70,5 +72,15 @@ public class ClazzController {
         log.info("修改班级：{}",clazz);
         clazzService.update(clazz);
         return Result.success();
+    }
+
+    /**
+     * 查询所有班级
+     */
+    @GetMapping("/list")
+    public Result getAllClazz(){
+        log.info("查询所有班级");
+        List<Clazz> clazzList = clazzService.findAll();
+        return Result.success(clazzList);
     }
 }

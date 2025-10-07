@@ -45,7 +45,7 @@ public class TokenFilter implements Filter {
         }
 
         // 6. 校验通过，放行
-        log.info("了令牌合法，直接放行");
+        log.info("令牌合法，直接放行");
         filterChain.doFilter(request,response);
     }
 }
