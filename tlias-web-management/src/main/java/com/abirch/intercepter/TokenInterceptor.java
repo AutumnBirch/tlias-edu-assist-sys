@@ -9,7 +9,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Slf4j
-@Component
+//@Component
 public class TokenInterceptor implements HandlerInterceptor {
 
     @Override
