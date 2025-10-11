@@ -28,4 +28,10 @@ public class StudentServiceImpl implements StudentService {
         Page<Student> s = (Page<Student>) studentList;
         return new PageResult<Student>(s.getTotal(),s.getResult());
     }
+
+    @Override
+    public void delete(List<Integer> ids) {
+        // 批量删除员工基本信息
+        studentMapper.deleteById(ids);
+    }
 }

@@ -6,10 +6,11 @@ import com.abirch.pojo.Student;
 import com.abirch.pojo.StudentQueryParam;
 import com.abirch.service.StudentService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 学生管理Controller
@@ -30,5 +31,14 @@ public class StudentController {
         log.info("条件分页查询学生信息：{}",studentQueryParam);
         PageResult<Student> pageResult = studentService.page(studentQueryParam);
         return Result.success(pageResult);
+    }
+    /**
+     * 删除学员
+     */
+    @DeleteMapping("/{ids}")
+    public Result delete(@PathVariable List<Integer> ids){
+        log.info("根据ID删除学员：{}",ids);
+        studentService.delete(ids);
+        return Result.success();
     }
 }
