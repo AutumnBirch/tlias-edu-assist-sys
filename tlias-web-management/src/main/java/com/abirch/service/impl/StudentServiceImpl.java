@@ -54,4 +54,23 @@ public class StudentServiceImpl implements StudentService {
         student.setUpdateTime(LocalDateTime.now());
         studentMapper.updateById(student);
     }
+
+    @Override
+    public void handleViolation(Integer id, Short score) {
+        // 1. 根据ID查询学员信息
+        Student student = studentMapper.getById(id);
+        
+        // 检查学员是否存在
+        if (student == null) {
+            throw new RuntimeException("学员不存在，ID：" + id);
+        }
+        
+        // 2. 处理学员扣分
+        student.setViolationScore((short) (student.getViolationScore() + score));
+        // 2. 处理学员违纪次数
+        student.setViolationCount((short) (student.getViolationCount() + 1));
+        // 3. 更新学员信息
+        student.setUpdateTime(LocalDateTime.now());
+        studentMapper.updateById(student);
+    }
 }

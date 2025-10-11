@@ -40,4 +40,8 @@ public interface StudentService {
      * @param student
      */
     void update(Student student);
+    /**
+     * 违纪处理
+     */
+    void handleViolation(Integer id, Short score);
 }

@@ -2,10 +2,8 @@ package com.abirch.mapper;
 
 import com.abirch.pojo.Clazz;
 import com.abirch.pojo.ClazzQueryParam;
-import com.abirch.pojo.Emp;
 import org.apache.ibatis.annotations.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Mapper
@@ -24,6 +22,7 @@ public interface ClazzMapper {
     Clazz getById(Integer id);
 
     void updateById(Clazz clazz);
+
     @Select("select * from clazz")
     List<Clazz> getAllClazzInfo();
 }

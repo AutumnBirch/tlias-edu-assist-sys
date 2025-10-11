@@ -41,14 +41,14 @@
             else '其他' end ) degreeStr
         from student s left join clazz c on s.clazz_id = c.id
         <where>
-           <if test="studentQueryParam.name != null and studentQueryParam.name != '' ">
-               s.name like concat('%',#{studentQueryParam.name},'%')
+           <if test="name != null and name != '' ">
+               s.name like concat('%',#{name},'%')
            </if>
-        <if test="studentQueryParam.degree != null">
-            and s.degree = #{studentQueryParam.degree}
+        <if test="degree != null">
+            and s.degree = #{degree}
         </if>
-        <if test="studentQueryParam.clazzId != null">
-            and s.clazz_id = #{studentQueryParam.clazzId}
+        <if test="clazzId != null">
+            and s.clazz_id = #{clazzId}
         </if>
         </where>
         order by update_time desc
