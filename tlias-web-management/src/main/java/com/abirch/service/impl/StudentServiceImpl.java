@@ -1,5 +1,6 @@
 package com.abirch.service.impl;
 
+import com.abirch.mapper.ClazzMapper;
 import com.abirch.mapper.StudentMapper;
 import com.abirch.pojo.PageResult;
 import com.abirch.pojo.Student;
@@ -41,5 +42,10 @@ public class StudentServiceImpl implements StudentService {
         student.setCreateTime(LocalDateTime.now());
         student.setUpdateTime(LocalDateTime.now());
         studentMapper.insert(student);
+    }
+
+    @Override
+    public Student getInfoById(Integer id) {
+        return studentMapper.getById(id);
     }
 }

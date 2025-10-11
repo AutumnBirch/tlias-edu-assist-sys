@@ -27,4 +27,11 @@ public interface StudentService {
      * @param student
      */
     void add(Student student);
+
+    /**
+     * 根据ID查询学员
+     * @param id
+     * @return
+     */
+    Student getInfoById(Integer id);
 }

@@ -35,4 +35,7 @@
         </where>
         order by update_time desc
     </select>
+    <select id="getById" resultType="com.abirch.pojo.Student">
+        select s.*,c.name clazzName from student s left join clazz c on s.clazz_id = c.id where s.id = #{id}
+    </select>
 </mapper>
