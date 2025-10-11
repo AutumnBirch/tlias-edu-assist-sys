@@ -1,5 +1,6 @@
 package com.abirch.controller;
 
+import com.abirch.pojo.ClazzOption;
 import com.abirch.pojo.JobOption;
 import com.abirch.pojo.Result;
 import com.abirch.service.ReportService;
@@ -38,5 +39,23 @@ public class ReportController {
         log.info("统计员工性别数据");
         List<Map<String,Object>> genderList = reportService.getEmpGenderData();
         return Result.success(genderList);
+    }
+    /**
+     * 学员学历统计
+     */
+    @GetMapping("/studentDegreeData")
+    public Result getStuDegreeData(){
+        log.info("学员学历统计");
+        List<Map<String,Object>> degreeList = reportService.getStuDegreeData();
+        return Result.success(degreeList);
+    }
+    /**
+     * 班级人数统计
+     */
+    @GetMapping("/studentCountData")
+    public Result getStuClazzData(){
+        log.info("班级人数统计");
+        ClazzOption clazzOption = reportService.getStuClazzData();
+        return Result.success(clazzOption);
     }
 }

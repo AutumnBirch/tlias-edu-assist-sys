@@ -1,5 +1,6 @@
 package com.abirch.service;
 
+import com.abirch.pojo.ClazzOption;
 import com.abirch.pojo.JobOption;
 
 import java.util.List;
@@ -18,4 +19,15 @@ public interface ReportService {
      */
     List<Map<String, Object>> getEmpGenderData();
 
+    /**
+     * 学员学历统计
+     * @return
+     */
+    List<Map<String, Object>> getStuDegreeData();
+
+    /**
+     * 班级人数统计
+     * @return
+     */
+    ClazzOption getStuClazzData();
 }

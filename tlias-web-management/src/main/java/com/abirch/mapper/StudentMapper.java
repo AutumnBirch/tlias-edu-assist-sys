@@ -2,11 +2,10 @@ package com.abirch.mapper;
 
 import com.abirch.pojo.Student;
 import com.abirch.pojo.StudentQueryParam;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface StudentMapper {
@@ -21,4 +20,9 @@ public interface StudentMapper {
     Student getById(Integer id);
 
     void updateById(Student student);
+
+    @MapKey("degreeStr")
+    List<Map<String, Object>> countStuDegreeData();
+    @MapKey("test")
+    List<Map<String, Object>> countStuClazzData();
 }

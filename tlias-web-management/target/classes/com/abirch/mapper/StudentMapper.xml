@@ -27,7 +27,7 @@
                                 #{id}
                             </foreach>
     </delete>
-
+    <!--    学生列表查询    -->
     <select id="list" resultType="com.abirch.pojo.Student">
         select s.*,
                c.name clazzName,
@@ -55,5 +55,49 @@
     </select>
     <select id="getById" resultType="com.abirch.pojo.Student">
         select s.*,c.name clazzName from student s left join clazz c on s.clazz_id = c.id where s.id = #{id}
+    </select>
+    <!--    学生学历统计
+                select
+
+            if(degree=1,'初中',
+            if(degree=2,'高中',
+            if(degree=3,'大专',
+            if(degree=4,'本科',
+            if(degree=5,'硕士',
+            if(degree=6,'博士',
+            '其他')))))) degree,
+
+            (case
+            when s.degree=1 then '初中'
+            when s.degree=2 then '高中'
+            when s.degree=3 then '大专'
+            when s.degree=4 then '本科'
+            when s.degree=5 then '硕士'
+            when s.degree=6 then '博士'
+            else '其他' end ) degreeStr,
+            count(*) value
+        from student s group by s.degree
+
+        -->
+    <select id="countStuDegreeData" resultType="java.util.Map">
+        select
+            (case
+            when s.degree=1 then '初中'
+            when s.degree=2 then '高中'
+            when s.degree=3 then '大专'
+            when s.degree=4 then '本科'
+            when s.degree=5 then '硕士'
+            when s.degree=6 then '博士'
+            else '其他' end ) name,
+            count(*) value
+        from student s group by degree
+    </select>
+<!--    班级人数统计    -->
+    <select id="countStuClazzData" resultType="java.util.Map">
+        select
+            c.name pos,
+            count(*) num
+        from clazz c left join student s on s.clazz_id = c.id
+        group by c.name order by num
     </select>
 </mapper>
