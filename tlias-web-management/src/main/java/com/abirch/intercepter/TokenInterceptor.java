@@ -9,19 +9,19 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Slf4j
-//@Component
+@Component
 public class TokenInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-//        // 1. 获取请求路径
-//        String requestURI = request.getRequestURI(); // /employee/login
-//        // 2. 判断是否为登录请求 如果路径中包含/login，说明书登录操作，放行
-//        if (requestURI.contains("/login")) {
-//            log.info("登录请求，放行");
-//            return true;
-//        }
+        // 1. 获取请求路径
+        String requestURI = request.getRequestURI(); // /employee/login
+        // 2. 判断是否为登录请求 如果路径中包含/login，说明书登录操作，放行
+        if (requestURI.contains("/login")) {
+            log.info("登录请求，放行");
+            return true;
+        }
         // 3. 获取请求头中的token（即jwt令牌）
         String token = request.getHeader("token");
 
