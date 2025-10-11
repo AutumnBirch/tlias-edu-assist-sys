@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.abirch.mapper.OperateLogMapper">
+
+    <!-- 分页查询操作日志列表 -->
+<!--    查询返回数据格式
+{
+    "code": 1,
+    "msg": null,
+    "data": {
+        "total": 15,
+        "rows": [
+            {
+                "id": 15,
+                "operateEmpId": 2,
+                "operateTime": "2023-12-18T17:37:15",
+                "className": "com.itheima.controller.DeptController",
+                "methodName": "add",
+                "methodParams": "[Dept(id=null, name=投资部, createTime=null, updateTime=null)]",
+                "returnValue": "Result(code=1, msg=null, data=null)",
+                "costTime": 8,
+                "operateEmpName": "宋江"
+            },
+            {
+                "id": 14,
+                "operateEmpId": 2,
+                "operateTime": "2023-12-18T17:37:07",
+                "className": "com.itheima.controller.DeptController",
+                "methodName": "add",
+                "methodParams": "[Dept(id=null, name=市场部, createTime=null, updateTime=null)]",
+                "returnValue": "Result(code=1, msg=null, data=null)",
+                "costTime": 4,
+                "operateEmpName": "宋江"
+            }
+        ]
+    }
+}
+-->
+    <select id="list" resultType="com.abirch.pojo.OperateLog">
+        select * from operate_log order by id desc
+    </select>
+</mapper>

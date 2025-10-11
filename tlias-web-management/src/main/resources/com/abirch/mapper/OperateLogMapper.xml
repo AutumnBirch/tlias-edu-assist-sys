@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.abirch.mapper.OperateLogMapper">
+
+    <!-- 分页查询操作日志列表 -->
+    <select id="list" resultType="com.abirch.pojo.OperateLog">
+        select * from operate_log order by id desc
+    </select>
+</mapper>

@@ -98,6 +98,6 @@
             c.name pos,
             count(*) num
         from clazz c left join student s on s.clazz_id = c.id
-        group by c.name order by num
+        group by pos order by num
     </select>
 </mapper>

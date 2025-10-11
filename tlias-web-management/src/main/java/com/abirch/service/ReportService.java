@@ -1,7 +1,6 @@
 package com.abirch.service;
 
-import com.abirch.pojo.ClazzOption;
-import com.abirch.pojo.JobOption;
+import com.abirch.pojo.*;
 
 import java.util.List;
 import java.util.Map;
@@ -30,4 +29,11 @@ public interface ReportService {
      * @return
      */
     ClazzOption getStuClazzData();
+
+    /**
+     * 日志列表查询
+     * @param operateLogQueryParam
+     * @return
+     */
+    PageResult<OperateLog> page(OperateLogQueryParam operateLogQueryParam);
 }
