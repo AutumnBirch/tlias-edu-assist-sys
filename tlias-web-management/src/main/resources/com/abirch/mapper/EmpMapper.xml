@@ -50,14 +50,14 @@
     <select id="list" resultType="com.abirch.pojo.Emp">
         select e.*,d.name from emp e left join dept d on e.dept_id = d.id
         <where>
-            <if test="name != null and name != '' ">
-                e.name like concat('%',#{name},'%')
+            <if test="empQueryParam.name != null and empQueryParam.name != '' ">
+                e.name like concat('%',#{empQueryParam.name},'%')
             </if>
-          <if test="gender != null">
-              and e.gender = #{gender}
+          <if test="empQueryParam.gender != null">
+              and e.gender = #{empQueryParam.gender}
           </if>
-          <if test="begin != null and end != null">
-              and e.entry_date between #{begin} and #{end}
+          <if test="empQueryParam.begin != null and empQueryParam.end != null">
+              and e.entry_date between #{empQueryParam.begin} and #{empQueryParam.end}
           </if>
         </where>
         order by e.update_time desc

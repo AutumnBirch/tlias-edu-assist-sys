@@ -3,7 +3,6 @@ package com.abirch.service.impl;
 import com.abirch.mapper.ClazzMapper;
 import com.abirch.pojo.Clazz;
 import com.abirch.pojo.ClazzQueryParam;
-import com.abirch.pojo.Emp;
 import com.abirch.pojo.PageResult;
 import com.abirch.service.ClazzService;
 import com.github.pagehelper.Page;

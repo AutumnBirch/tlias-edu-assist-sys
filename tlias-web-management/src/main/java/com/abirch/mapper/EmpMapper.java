@@ -38,7 +38,7 @@ public interface EmpMapper {
      * @return
      */
     // SQL语句在XML文件里配置好了，所以这里没有
-    public List<Emp> list(EmpQueryParam empQueryParam);
+    public List<Emp> list(@Param("empQueryParam") EmpQueryParam empQueryParam);
 
     /**
      * 新增员工基本信息
