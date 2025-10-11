@@ -6,7 +6,7 @@ import com.abirch.pojo.Student;
 import com.abirch.pojo.StudentQueryParam;
 import com.abirch.service.StudentService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Delete;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -58,5 +58,14 @@ public class StudentController {
         log.info("查询的学员ID为：{}",id);
         Student student = studentService.getInfoById(id);
         return Result.success(student);
+    }
+    /**
+     * 修改学员
+     */
+    @PutMapping
+    public Result update(@RequestBody Student student){
+        log.info("修改的学员为：{}",student);
+        studentService.update(student);
+        return Result.success();
     }
 }

@@ -25,11 +25,11 @@
                    else '在读中' end) status
         from clazz c left join emp e on c.master_id = e.id
         <where>
-            <if test="name != null and name != '' ">
-                c.name like concat('%',#{name},'%')
+            <if test="clazzQueryParam.name != null and clazzQueryParam.name != '' ">
+                c.name like concat('%',#{clazzQueryParam.name},'%')
             </if>
-            <if test="begin != null and end != null">
-                and c.end_date between #{begin} and #{end}
+            <if test="clazzQueryParam.begin != null and clazzQueryParam.end != null">
+                and c.end_date between #{clazzQueryParam.begin} and #{clazzQueryParam.end}
             </if>
         </where>
         order by update_time desc

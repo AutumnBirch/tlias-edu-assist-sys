@@ -3,6 +3,24 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.abirch.mapper.StudentMapper">
+    <update id="updateById">
+        update student
+        <set>
+            <if test="name != null and name != '' ">name = #{name},</if>
+            <if test="no != null">no = #{no},</if>
+            <if test="phone != null and phone != '' ">phone = #{phone},</if>
+            <if test="gender != null">gender = #{gender},</if>
+            <if test="degree != null">degree = #{degree},</if>
+            <if test="idCard != null and idCard != '' ">id_card = #{idCard},</if>
+            <if test="isCollege != null">is_college = #{isCollege},</if>
+            <if test="address != null and address != '' ">address = #{address},</if>
+            <if test="graduationDate != null">graduation_date = #{graduationDate},</if>
+            <if test="clazzId != null">clazz_id = #{clazzId},</if>
+            <if test="violationCount != null">violation_count = #{violationCount},</if>
+            <if test="violationScore != null">violation_score = #{violationScore},</if>
+        </set>
+        where id = #{id}
+    </update>
     <delete id="deleteById">
         delete from student where id in
                             <foreach collection="ids" item="id" separator="," open="(" close=")">
@@ -14,23 +32,23 @@
         select s.*,
                c.name clazzName,
         (case
-            when degree=1 then '初中'
-            when degree=2 then '高中'
-            when degree=3 then '大专'
-            when degree=4 then '本科'
-            when degree=5 then '硕士'
-            when degree=6 then '博士'
+            when s.degree=1 then '初中'
+            when s.degree=2 then '高中'
+            when s.degree=3 then '大专'
+            when s.degree=4 then '本科'
+            when s.degree=5 then '硕士'
+            when s.degree=6 then '博士'
             else '其他' end ) degreeStr
         from student s left join clazz c on s.clazz_id = c.id
         <where>
-           <if test="name != null and name != '' ">
-               s.name like concat('%',#{name},'%')
+           <if test="studentQueryParam.name != null and studentQueryParam.name != '' ">
+               s.name like concat('%',#{studentQueryParam.name},'%')
            </if>
-        <if test="degree != null">
-            and s.degree = #{degree}
+        <if test="studentQueryParam.degree != null">
+            and s.degree = #{studentQueryParam.degree}
         </if>
-        <if test="clazzId != null">
-            and s.clazz_id = #{clazzId}
+        <if test="studentQueryParam.clazzId != null">
+            and s.clazz_id = #{studentQueryParam.clazzId}
         </if>
         </where>
         order by update_time desc

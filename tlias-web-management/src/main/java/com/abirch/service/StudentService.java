@@ -34,4 +34,10 @@ public interface StudentService {
      * @return
      */
     Student getInfoById(Integer id);
+
+    /**
+     * 修改学员
+     * @param student
+     */
+    void update(Student student);
 }
