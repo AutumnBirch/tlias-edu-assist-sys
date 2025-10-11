@@ -41,4 +41,13 @@ public class StudentController {
         studentService.delete(ids);
         return Result.success();
     }
+    /**
+     * 添加学员
+     */
+    @PostMapping
+    public Result add(@RequestBody Student student){
+        log.info("添加学员信息：{}",student);
+        studentService.add(student);
+        return Result.success();
+    }
 }

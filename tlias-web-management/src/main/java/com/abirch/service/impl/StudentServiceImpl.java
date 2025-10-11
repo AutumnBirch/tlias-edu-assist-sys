@@ -10,6 +10,7 @@ import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -33,5 +34,12 @@ public class StudentServiceImpl implements StudentService {
     public void delete(List<Integer> ids) {
         // 批量删除员工基本信息
         studentMapper.deleteById(ids);
+    }
+
+    @Override
+    public void add(Student student) {
+        student.setCreateTime(LocalDateTime.now());
+        student.setUpdateTime(LocalDateTime.now());
+        studentMapper.insert(student);
     }
 }

@@ -21,4 +21,10 @@ public interface StudentService {
      * @param ids
      */
     void delete(List<Integer> ids);
+
+    /**
+     * 添加学员
+     * @param student
+     */
+    void add(Student student);
 }
