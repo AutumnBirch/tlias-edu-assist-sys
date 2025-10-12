@@ -1,4 +1,4 @@
-package com.abirch.pojo;
+package com.abirch.utils;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
