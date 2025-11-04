@@ -16,12 +16,12 @@ public class WebConfig implements WebMvcConfigurer {
 //    @Autowired
 //    private DemoInterceptor demoInterceptor;
 
-    @Autowired
-    private TokenInterceptor tokenInterceptor;
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(tokenInterceptor)
-                .addPathPatterns("/**") // 拦截所有请求
-                .excludePathPatterns("/login"); // 放行登录请求
-    }
+//    @Autowired
+//    private TokenInterceptor tokenInterceptor;
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        registry.addInterceptor(tokenInterceptor)
+//                .addPathPatterns("/**") // 拦截所有请求
+//                .excludePathPatterns("/login"); // 放行登录请求
+//    }
 }

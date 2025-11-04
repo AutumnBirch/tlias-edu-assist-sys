@@ -14,7 +14,7 @@ public interface StudentMapper {
 
     void deleteById(List<Integer> ids);
 
-    @Insert("insert into student(name,no,gender,phone,degree,clazz_id,id_card,is_College,address,graduation_date) values (#{name},#{no},#{gender},#{phone},#{degree},#{clazzId},#{idCard},#{isCollege},#{address},#{graduationDate})")
+    @Insert("insert into student(name,no,gender,phone,degree,clazz_id,id_card,is_College,address,graduation_date,create_time,update_time) values (#{name},#{no},#{gender},#{phone},#{degree},#{clazzId},#{idCard},#{isCollege},#{address},#{graduationDate},#{createTime},#{updateTime})")
     void insert(Student student);
 
     Student getById(Integer id);
